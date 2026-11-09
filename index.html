@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticks - Tech Solutions & Troubleshooting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        header {
+            background: #0f172a;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h2 {
+            letter-spacing: 0.5px;
+        }
+        header nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        header nav a:hover {
+            color: #ffffff;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #cbd5e1;
+        }
+        /* Search Bar Styles */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+            gap: 0.5rem;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .search-box button {
+            background: #3b82f6;
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-box button:hover {
+            background: #2563eb;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            width: 30%;
+            min-width: 260px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        .feature-card h3 {
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        /* Guides Section Styles */
+        .guides-section {
+            max-width: 1100px;
+            margin: 0 auto 4rem auto;
+            padding: 0 2rem;
+        }
+        .guides-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .guide-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .guide-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+        .guide-card span {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .guide-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        .guide-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            color: #64748b;
+            font-style: italic;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f172a;
+            color: #94a3b8;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Ticks</h2>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#guides">Guides</a>
+            <a href="#">Support</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Master Your Tech, Eliminate the Glitches</h1>
+        <p>Search diagnostic workflows and fixes for hardware, software, and connectivity hurdles.</p>
+       
+        <!-- Functional Search Box -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search error code or device issue (e.g., Wi-Fi, CPU, BSOD)...">
+            <button type="button" id="searchBtn">Search Fix</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>Performance & Hardware</h3>
+            <p>Diagnose slow boot times, cooling throttling, storage health drops, and sudden system reboots efficiently.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Network & Connectivity</h3>
+            <p>Resolve Wi-Fi dropouts, router quirks, and slow network data pipelines with targeted fixes.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Software & OS Quirks</h3>
+            <p>Straightforward procedures to patch freezing applications, driver conflicts, and persistent system errors.</p>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Guides Section -->
+    <section class="guides-section" id="guides">
+        <h2>Popular Tech Guides</h2>
+        <div class="guide-grid" id="guideGrid">
+            <div class="guide-card" onclick="alert('Opening guide: How to Fix Intermittent Wi-Fi Packet Loss')">
+                <span>Network</span>
+                <h4>How to Fix Intermittent Wi-Fi Packet Loss</h4>
+                <p>Step-by-step diagnostic workflow covering DNS flushing, channel shifting, and adapter resets.</p>
+            </div>
+            <div class="guide-card" onclick="alert('Opening guide: Resolving High CPU Idle Temperatures')">
+                <span>Hardware</span>
+                <h4>Resolving High CPU Idle Temperatures</h4>
+                <p>Check thermal paste degradation, cooler mounting pressure, and background background bloatware processes.</p>
+            </div>
+            <div class="guide-card" onclick="alert('Opening guide: Fixing Persistent Blue Screen (BSOD) Errors')">
+                <span>Software</span>
+                <h4>Fixing Persistent Blue Screen (BSOD) Errors</h4>
+                <p>Analyze dump files, verify faulty RAM modules, and roll back unstable graphics drivers safely.</p>
+            </div>
+            <div class="guide-card" onclick="alert('Opening guide: Fixing Bluetooth Audio Stuttering')">
+                <span>Network</span>
+                <h4>Fixing Bluetooth Audio Stuttering & Dropouts</h4>
+                <p>Reset audio driver services, clear interference channels, and update generic wireless card stacks.</p>
+            </div>
+            <div class="guide-card" onclick="alert('Opening guide: Accelerating Slow NVMe SSD Speeds')">
+                <span>Hardware</span>
+                <h4>Accelerating Slow NVMe SSD Speeds</h4>
+                <p>Check PCIe lane allocations, update NVMe firmware controllers, and manage thermal throttling limits.</p>
+            </div>
+            <div class="guide-card" onclick="alert('Opening guide: Reverting Unstable Windows Updates')">
+                <span>Software</span>
+                <h4>Reverting Unstable Windows Updates & Patches</h4>
+                <p>Uninstall problematic cumulative updates through advanced startup settings and pause future pushes.</p>
+            </div>
+            <div id="noResults" class="no-results">No matching tech guides found. Try searching for "Wi-Fi", "CPU", or "Software".</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ticks. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Live Search & Filtering -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const guideCards = document.querySelectorAll('.guide-card');
+        const noResults = document.getElementById('noResults');
+
+        function filterGuides() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            guideCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Trigger filter on typing or clicking search
+        searchInput.addEventListener('input', filterGuides);
+        searchBtn.addEventListener('click', filterGuides);
+    </script>
+
+</body>
+</html>
